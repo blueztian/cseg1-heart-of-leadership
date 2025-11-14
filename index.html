@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heart of Leadership</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-menu">
+        <h1 class="game-title">The Heart of Leadership</h1>
+        <p class="game-subtitle">A story of balance, leadership, and love</p>
+        <div class="menu-buttons">
+            <button id="start-btn" class="menu-btn">Start Game</button>
+            <button id="settings-btn" class="menu-btn">Settings</button>
+            <button id="exit-btn" class="menu-btn">Exit</button>
+        </div>
+    </div>
+
+    <div id="character-select" style="display:none;">
+        <h2 class="select-title">Choose Your Character</h2>
+        <p class="select-subtitle">Experience the story from a different perspective</p>
+        <div class="character-options">
+            <button id="alex-btn" class="character-btn" onclick="selectCharacter('alex')">
+                <div class="character-icon">👔</div>
+                <div class="character-name">Alex</div>
+                <div class="character-desc">The Student Leader</div>
+            </button>
+            <button id="jordan-btn" class="character-btn" onclick="selectCharacter('jordan')">
+                <div class="character-icon">💝</div>
+                <div class="character-name">Jordan</div>
+                <div class="character-desc">The Classmate</div>
+            </button>
+        </div>
+    </div>
+
+    <div id="game-container" style="display:none;">
+        <div id="scene-transition" class="scene-transition"></div>
+        <div id="dialogue-box">
+            <div id="dialogue-text" class="dialogue-text"></div>
+            <div id="typing-indicator" class="typing-indicator" style="display:none;">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div id="choice-container">
+            <div id="question-prompt" class="question-prompt" style="display:none;">
+                <p class="question-text">What will you do?</p>
+            </div>
+            <button id="choice1" class="choice-btn" onclick="makeChoice(1)">
+                <span class="choice-text"></span>
+            </button>
+            <button id="choice2" class="choice-btn" onclick="makeChoice(2)">
+                <span class="choice-text"></span>
+            </button>
+        </div>
+    </div>
+
+    <div id="ending-screen" style="display:none;">
+        <div id="ending-content">
+            <h2 id="ending-title"></h2>
+            <p id="ending-text"></p>
+            <div class="cta-section">
+                <p class="cta-text">✨ Discover a different path? ✨</p>
+                <p class="cta-subtext">Your choices shape the story. Play again to explore new possibilities!</p>
+            </div>
+            <div class="ending-buttons">
+                <button id="replay-btn" class="menu-btn cta-button">Play Again</button>
+                <button id="menu-btn" class="menu-btn">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

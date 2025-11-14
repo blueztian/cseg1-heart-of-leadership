@@ -1,0 +1,824 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+    transition: background 1s ease;
+    overflow-x: hidden;
+}
+
+/* Warm colors for romantic moments */
+body.romance-tone {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+/* Cool colors for stressful/leadership moments */
+body.leadership-tone {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+/* Balanced tone */
+body.balanced-tone {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Main Menu */
+#main-menu {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: menuFadeIn 0.8s ease;
+    backdrop-filter: blur(10px);
+}
+
+.game-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+.game-subtitle {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 40px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.menu-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.menu-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.menu-btn:active {
+    transform: translateY(-1px);
+}
+
+#start-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+}
+
+#settings-btn {
+    background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+    color: white;
+}
+
+#exit-btn {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    color: white;
+}
+
+/* Character Selection */
+#character-select {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: menuFadeIn 0.8s ease;
+    backdrop-filter: blur(10px);
+    max-width: 700px;
+    width: 90%;
+}
+
+.select-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.select-subtitle {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.character-options {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.character-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 3px solid transparent;
+    border-radius: 20px;
+    padding: 40px 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    min-width: 200px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.character-btn:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: #667eea;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.character-btn:hover .character-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.character-icon {
+    font-size: 4em;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.character-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.character-btn:hover .character-name {
+    color: white;
+}
+
+.character-desc {
+    font-size: 1em;
+    color: #666;
+    font-weight: 300;
+}
+
+.character-btn:hover .character-desc {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Game Container */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    animation: gameFadeIn 0.8s ease;
+}
+
+.scene-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.scene-transition.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Dialogue Box */
+#dialogue-box {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    min-height: 200px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: dialogueSlideIn 0.6s ease;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.dialogue-text {
+    font-size: 1.4em;
+    line-height: 1.8;
+    color: #333;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: cursor 0.3s ease;
+}
+
+.dialogue-text.clickable {
+    cursor: pointer;
+    position: relative;
+}
+
+.dialogue-text.clickable::after {
+    content: '▶';
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    font-size: 0.8em;
+    color: #667eea;
+    animation: blink 1s infinite;
+    opacity: 0.7;
+}
+
+.dialogue-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dialogue-text::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.dialogue-text::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 10px;
+}
+
+.dialogue-text::-webkit-scrollbar-thumb:hover {
+    background: rgba(102, 126, 234, 0.5);
+}
+
+.dialogue-text .char {
+    opacity: 0;
+    animation: charFadeIn 0.05s forwards;
+    display: inline;
+}
+
+.dialogue-text .sentence {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: #667eea;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Choice Container */
+#choice-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.question-prompt {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+}
+
+.question-text {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #667eea;
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    animation: questionPulse 2s ease-in-out infinite;
+}
+
+@keyframes questionPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.choice-btn {
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    border: 3px solid transparent;
+    padding: 20px 30px;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: choiceSlideIn 0.6s ease forwards;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.choice-btn:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.choice-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.choice-btn:hover::before {
+    left: 100%;
+}
+
+.choice-btn:hover {
+    transform: translateX(10px) scale(1.02);
+    border-color: #667eea;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.choice-btn:active {
+    transform: translateX(5px) scale(0.98);
+}
+
+.choice-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ending Screen */
+#ending-screen {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 60px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: menuFadeIn 0.8s ease;
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    width: 90%;
+}
+
+#ending-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    animation: titlePulse 2s ease-in-out infinite;
+}
+
+#ending-text {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 40px;
+    font-weight: 400;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#ending-text::-webkit-scrollbar {
+    width: 6px;
+}
+
+#ending-text::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+#ending-text::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 10px;
+}
+
+.cta-section {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 2px dashed rgba(102, 126, 234, 0.3);
+    animation: ctaPulse 3s ease-in-out infinite;
+}
+
+.cta-text {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.cta-subtext {
+    font-size: 1em;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.ending-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    animation: buttonPulse 2s ease-in-out infinite;
+    font-size: 1.1em;
+    padding: 18px 50px;
+}
+
+.cta-button:hover {
+    animation: none;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(76, 175, 80, 0.4);
+}
+
+/* Animations */
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gameFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dialogueSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes choiceSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes charFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typingBounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+    }
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes ctaPulse {
+    0%, 100% {
+        border-color: rgba(102, 126, 234, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        border-color: rgba(102, 126, 234, 0.6);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 35px rgba(76, 175, 80, 0.6);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #main-menu, #ending-screen, #character-select {
+        padding: 30px 20px;
+        margin: 10px;
+        width: calc(100% - 20px);
+        max-width: 100%;
+    }
+
+    .game-title {
+        font-size: 2.2em;
+    }
+
+    .select-title {
+        font-size: 1.8em;
+    }
+
+    .dialogue-text {
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+
+    #dialogue-box {
+        padding: 20px 15px;
+        min-height: 120px;
+        max-height: 50vh;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .choice-btn {
+        padding: 15px 18px;
+        font-size: 0.95em;
+        width: 100%;
+    }
+
+    .question-prompt {
+        padding: 12px 15px;
+        margin-bottom: 12px;
+    }
+
+    .question-text {
+        font-size: 1.1em;
+    }
+
+    .ending-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .character-options {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .character-btn {
+        min-width: auto;
+        width: 100%;
+        padding: 30px 40px;
+    }
+
+    .character-icon {
+        font-size: 3em;
+    }
+
+    .character-name {
+        font-size: 1.5em;
+    }
+
+    #game-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    #choice-container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+
+    #main-menu, #ending-screen, #character-select {
+        padding: 25px 15px;
+        margin: 5px;
+    }
+
+    .game-title {
+        font-size: 1.8em;
+    }
+
+    .game-subtitle {
+        font-size: 1em;
+    }
+
+    .dialogue-text {
+        font-size: 0.95em;
+        line-height: 1.5;
+        padding: 8px;
+    }
+
+    #dialogue-box {
+        padding: 15px 12px;
+        max-height: 45vh;
+        border-radius: 15px;
+    }
+
+    .choice-btn {
+        padding: 12px 15px;
+        font-size: 0.9em;
+        border-radius: 12px;
+    }
+
+    .question-prompt {
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .question-text {
+        font-size: 1em;
+    }
+
+    .menu-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .cta-text {
+        font-size: 1.1em;
+    }
+
+    .cta-subtext {
+        font-size: 0.9em;
+    }
+
+    #ending-title {
+        font-size: 2em;
+    }
+
+    #ending-text {
+        font-size: 1em;
+    }
+
+    .character-btn {
+        padding: 25px 30px;
+    }
+
+    .character-icon {
+        font-size: 2.5em;
+    }
+
+    .character-name {
+        font-size: 1.3em;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .choice-btn {
+        min-height: 50px;
+        padding: 18px 20px;
+    }
+
+    .menu-btn {
+        min-height: 48px;
+    }
+
+    #dialogue-box {
+        min-height: 100px;
+    }
+}
